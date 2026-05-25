@@ -1,0 +1,37 @@
+{
+  "categories": {
+    "all": "Todos",
+    "Pratos": "Pratos",
+    "Bebidas": "Bebidas",
+    "Sobremesas": "Sobremesas"
+  },
+  "navbar": {
+    "home": "Início",
+    "orders": "Pedidos",
+    "favorites": "Favoritos",
+    "reports": "Relatórios",
+    "settings": "Configurações",
+    "search": "Pesquisar...",
+    "cart": "Carrinho",
+    "light": "Claro",
+    "dark": "Escuro",
+    "logout": "Terminar Sessão"
+  },
+  "hero": {
+    "title": "Sabores <span class='highlight'>Premium</span> à sua porta.",
+    "subtitle": "O melhor da gastronomia angolana com entrega exclusiva.",
+    "button": "Pedir Agora"
+  },
+  "products": {
+    "all_menu": "Nossa Ementa",
+    "favorites_section": "Seus Favoritos",
+    "add": "Adicionar ao Carrinho",
+    "unit_price": "Preço Unitário"
+  },
+  "recover": {
+    "title": "Recuperação",
+    "subtitle": "Insira o seu e-mail para receber o código.",
+    "btn_send": "Enviar Código",
+    "back": "Voltar ao Login"
+  }
+}

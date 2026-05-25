@@ -1,0 +1,75 @@
+<div class="reports-page">
+
+    <div class="reports-header">
+
+        <div>
+
+            <h1>
+                Relatórios
+            </h1>
+
+            <p>
+                Exporte e acompanhe
+                os pedidos realizados
+            </p>
+
+        </div>
+
+        <button
+            class="export-btn"
+            (click)="exportCSV()"
+        >
+
+            ⬇ Exportar CSV
+
+        </button>
+
+    </div>
+
+    <div class="report-card">
+
+        <h2>
+            Histórico de Pedidos
+        </h2>
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>Data</th>
+                    <th>Total</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr
+                    *ngFor="let pedido of pedidos"
+                >
+
+                    <td>
+                        #{{ pedido.id }}
+                    </td>
+
+                    <td>
+                        {{ pedido.data }}
+                    </td>
+
+                    <td>
+                        {{ pedido.total }} Kz
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>

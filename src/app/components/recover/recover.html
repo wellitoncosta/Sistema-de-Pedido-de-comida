@@ -1,0 +1,69 @@
+<div class="auth-container">
+  <div class="auth-hero-side">
+    <div class="hero-overlay"></div>
+    <div class="hero-brand-content">
+      <span class="premium-badge">PETISKO DELIVERY</span>
+      <h1>PetiSko</h1>
+      <p>A melhor experiência de delivery moderno em Angola.</p>
+    </div>
+  </div>
+
+  <div class="auth-form-side">
+    <div class="auth-form-card glass-card">
+      
+      <div class="alert-error" *ngIf="mensagemErro">
+        <i class="bi bi-exclamation-circle"></i> {{ mensagemErro }}
+      </div>
+
+      <!-- ETAPA 1 -->
+      <div *ngIf="etapa === 1">
+        <h2>Recuperação</h2>
+        <p class="auth-subtitle">Insira o e-mail para receber o código.</p>
+        <div class="input-group-premium">
+          <label>E-MAIL</label>
+          <div class="input-wrapper">
+            <i class="bi bi-envelope"></i>
+            <input type="email" [(ngModel)]="email" placeholder="exemplo@email.com">
+          </div>
+        </div>
+        <button class="btn-auth-premium" (click)="enviarEmail()" [disabled]="isLoading">
+          {{ isLoading ? 'Enviando...' : 'Enviar Código' }}
+        </button>
+      </div>
+
+      <!-- ETAPA 2 -->
+      <div *ngIf="etapa === 2">
+        <h2>Validar Código</h2>
+        <p class="auth-subtitle">Insira o código enviado para o seu e-mail.</p>
+        <div class="input-group-premium">
+          <label>CÓDIGO DE VERIFICAÇÃO</label>
+          <div class="input-wrapper">
+            <i class="bi bi-shield-check"></i>
+            <input type="text" [(ngModel)]="codigo" placeholder="000000">
+          </div>
+        </div>
+        <button class="btn-auth-premium" (click)="verificarCodigo()">Verificar Código</button>
+      </div>
+
+      <!-- ETAPA 3 -->
+      <div *ngIf="etapa === 3">
+        <h2>Nova Senha</h2>
+        <p class="auth-subtitle">Crie uma nova senha de acesso.</p>
+        <div class="input-group-premium">
+          <label>NOVA SENHA</label>
+          <input type="password" [(ngModel)]="novaSenha" class="input-modern" placeholder="******">
+        </div>
+        <div class="input-group-premium">
+          <label>CONFIRMAR SENHA</label>
+          <input type="password" [(ngModel)]="confirmarSenha" class="input-modern" placeholder="******">
+        </div>
+        <button class="btn-auth-premium" (click)="finalizarRedefinicao()">Salvar Senha</button>
+      </div>
+
+      <div class="auth-footer">
+        <a (click)="voltarAoLogin()" class="auth-link">Voltar ao Login</a>
+      </div>
+
+    </div>
+  </div>
+</div>

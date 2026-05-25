@@ -1,0 +1,148 @@
+/* recover.css */
+
+.auth-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--bg-primary); /* Fundo dinâmico */
+  transition: background-color 0.3s ease;
+}
+
+.auth-hero-side {
+  flex: 1.2;
+  position: relative;
+  background: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1470') center/cover no-repeat;
+  display: flex;
+  align-items: flex-end;
+  padding: 60px;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  /* Gradiente que escurece a imagem para facilitar a leitura do texto branco */
+  background: linear-gradient(135deg, rgba(0,0,0,0.2) 0%, var(--bg-primary) 100%);
+}
+
+.hero-brand-content {
+  position: relative;
+  z-index: 2;
+  color: #ffffff; /* Texto sobre a imagem sempre branco */
+}
+
+.auth-form-side {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  background-color: var(--bg-primary);
+}
+
+.glass-card {
+  width: 100%;
+  max-width: 440px;
+  padding: 40px;
+  background: var(--bg-secondary); /* Muda entre branco (light) e azul escuro (dark) */
+  border-radius: 24px;
+  border: 1px solid var(--border);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+
+.auth-content h2 {
+  color: var(--text-main);
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.auth-subtitle {
+  color: var(--text-sub);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 25px;
+}
+
+.input-group-premium label {
+  color: var(--text-sub);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-wrapper i {
+  position: absolute;
+  left: 15px;
+  color: var(--accent); /* Ícone laranja para dar destaque */
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 14px 14px 14px 45px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  color: var(--text-main);
+  outline: none;
+}
+
+.input-wrapper input:focus {
+  border-color: var(--accent);
+}
+
+/* BOTÃO LARANJA - FORÇADO PARA SEMPRE SER SÓLIDO */
+.btn-auth-premium {
+  width: 100%;
+  padding: 16px;
+  background: var(--accent) !important;
+  color: #ffffff !important;
+  border: none;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: transform 0.2s, filter 0.2s;
+  box-shadow: 0 8px 20px rgba(249, 115, 22, 0.3);
+}
+
+.btn-auth-premium:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+}
+
+.btn-auth-premium:disabled {
+  background: #64748b !important;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.auth-footer {
+  margin-top: 25px;
+  text-align: center;
+}
+
+.auth-link {
+  color: var(--accent);
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.auth-link:hover {
+  text-decoration: underline;
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+  .auth-hero-side { display: none; }
+}

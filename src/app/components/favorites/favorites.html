@@ -1,0 +1,34 @@
+<div class="favorites-page">
+
+    <h1>
+        Favoritos
+    </h1>
+
+    <div class="favorites-grid">
+
+        <div
+            class="favorite-card"
+            *ngFor="let item of favoritos"
+        >
+
+            <img
+                [src]="item.imagem_url"
+            >
+
+            <h2>
+
+                {{ item.nome }}
+
+            </h2>
+
+            <p>
+
+                {{ item.preco }} Kz
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>

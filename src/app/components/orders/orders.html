@@ -1,0 +1,116 @@
+<div class="orders-page">
+
+    <div class="page-header">
+
+        <h1>
+            Meus Pedidos
+        </h1>
+
+        <p>
+            Acompanhe seus pedidos em tempo real
+        </p>
+
+    </div>
+
+    <div
+        class="pedido-card"
+        *ngFor="let pedido of pedidos"
+    >
+
+        <div class="pedido-top">
+
+            <div>
+
+                <h2>
+
+                    Pedido #{{ pedido.id }}
+
+                </h2>
+
+                <span>
+
+                    {{ pedido.data }}
+
+                </span>
+
+            </div>
+
+            <div class="status entregue">
+
+                Entregue
+
+            </div>
+
+        </div>
+
+        <div class="tracking">
+
+            <div class="step active">
+
+                ✓ Confirmado
+
+            </div>
+
+            <div class="line"></div>
+
+            <div class="step active">
+
+                ✓ Preparando
+
+            </div>
+
+            <div class="line"></div>
+
+            <div class="step active">
+
+                ✓ A Caminho
+
+            </div>
+
+            <div class="line"></div>
+
+            <div class="step active">
+
+                ✓ Entregue
+
+            </div>
+
+        </div>
+
+        <div class="pedido-items">
+
+            <div
+                class="item"
+                *ngFor="let item of pedido.items"
+            >
+
+                <span>
+
+                    {{ item.nome }}
+
+                </span>
+
+                <strong>
+
+                    {{ item.preco }} Kz
+
+                </strong>
+
+            </div>
+
+        </div>
+
+        <div class="pedido-footer">
+
+            <h3>
+
+                Total:
+                {{ pedido.total }} Kz
+
+            </h3>
+
+        </div>
+
+    </div>
+
+</div>
