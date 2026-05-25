@@ -1,0 +1,142 @@
+<div class="settings-page">
+
+    <div class="profile-card">
+
+        <div class="avatar">
+
+            {{
+                user.nome
+                ? user.nome[0]
+                : 'U'
+            }}
+
+        </div>
+
+        <h1>
+
+            {{ user.nome }}
+
+        </h1>
+
+        <p>
+
+            {{ user.email }}
+
+        </p>
+
+    </div>
+
+    <div class="settings-grid">
+
+        <div class="settings-box">
+
+            <h2>
+                Alterar Nome
+            </h2>
+
+            <input
+                type="text"
+                [(ngModel)]="novoNome"
+            >
+
+            <button
+                (click)="salvarPerfil()"
+            >
+
+                Salvar
+
+            </button>
+
+        </div>
+
+        <div class="settings-box">
+
+            <h2>
+                Alterar Senha
+            </h2>
+
+            <button
+                (click)="enviarCodigo()"
+            >
+
+                Enviar Código
+
+            </button>
+
+            <input
+                type="text"
+                placeholder="Código de verificação"
+                [(ngModel)]="codigo"
+            >
+
+            <button
+                (click)="verificarCodigo()"
+            >
+
+                Verificar Código
+
+            </button>
+
+            <div *ngIf="codigoVerificado">
+
+                <input
+                    type="password"
+                    placeholder="Senha atual"
+                    [(ngModel)]="senhaAtual"
+                >
+
+                <input
+                    type="password"
+                    placeholder="Nova senha"
+                    [(ngModel)]="novaSenha"
+                >
+
+                <input
+                    type="password"
+                    placeholder="Confirmar nova senha"
+                    [(ngModel)]="confirmarSenha"
+                >
+
+                <button
+                    (click)="alterarSenha()"
+                >
+
+                    Salvar Nova Senha
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="settings-box">
+
+            <h2>
+                Idioma
+            </h2>
+
+            <div class="lang-buttons">
+
+                <button
+                    (click)="mudarIdioma('pt')"
+                >
+
+                    🇦🇴 Português
+
+                </button>
+
+                <button
+                    (click)="mudarIdioma('en')"
+                >
+
+                    🇺🇸 English
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

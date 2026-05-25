@@ -1,0 +1,61 @@
+<div class="auth-container">
+  <div class="auth-hero-side">
+    <div class="hero-overlay"></div>
+    <div class="hero-brand-content">
+      <span class="premium-badge">EXPERIÊNCIA PREMIUM</span>
+      <h1>Crie sua conta</h1>
+      <p>Experiência premium de delivery para quem não abre mão da excelência em cada detalhe.</p>
+    </div>
+  </div>
+
+  <div class="auth-form-side">
+    <div class="auth-form-card glass-card">
+      <h2>Registo</h2>
+      <p class="subtitle">Insira os seus dados para começar.</p>
+
+      <form (ngSubmit)="register()">
+        <div class="input-group-premium">
+          <label>NOME COMPLETO</label>
+          <div class="input-with-icon">
+            <i class="bi bi-person"></i>
+            <input type="text" placeholder="Ex: João Manuel" [(ngModel)]="nome" name="nome">
+          </div>
+        </div>
+          <div class="alert-error" *ngIf="errorMessage">
+          <i class="bi bi-exclamation-triangle-fill"></i> {{ errorMessage }}
+          </div>
+          <div class="input-group-premium">
+          <label>EMAIL</label>
+          <div class="input-with-icon">
+            <i class="bi bi-envelope"></i>
+            <input type="email" placeholder="nome@email.com" [(ngModel)]="email" name="email">
+          </div>
+        </div>
+
+        <div class="input-group-premium">
+          <label>PALAVRA-PASSE</label>
+          <div class="input-with-icon">
+            <i class="bi bi-lock"></i>
+            <input type="password" placeholder="Crie uma senha forte" [(ngModel)]="password" name="password">
+          </div>
+        </div>
+
+        <div class="input-group-premium">
+          <label>CONFIRMAR PALAVRA-PASSE</label>
+          <div class="input-with-icon">
+            <i class="bi bi-lock-fill"></i>
+            <input type="password" placeholder="Repita a senha" [(ngModel)]="confirmPassword" name="confirmPassword">
+          </div>
+        </div>
+
+        <button class="btn-premium w-100" type="submit">
+          CRIAR CONTA
+        </button>
+      </form>
+
+      <p class="footer-auth-text">
+        Já tenho conta? <a routerLink="/">Fazer login</a>
+      </p>
+    </div>
+  </div>
+</div>

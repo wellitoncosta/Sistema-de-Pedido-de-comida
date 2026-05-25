@@ -1,0 +1,207 @@
+<div class="dashboard-container">
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <div class="search-wrap">
+        <i class="bi bi-search search-icon"></i>
+        <input
+          type="text"
+          class="search-input"
+          placeholder="Pesquisar pratos ou bebidas..."
+          [(ngModel)]="pesquisa"
+          (input)="filtrarProdutos()"
+        />
+      </div>
+
+      <div class="topbar-right">
+        <!-- BOTÃO TEMA -->
+        <button class="btn-theme" (click)="themeService.toggleTheme()">
+          <i class="bi" [ngClass]="themeService.getDarkModeStatus() ? 'bi-sun-fill' : 'bi-moon-stars-fill'"></i>
+          <span>{{ themeService.getDarkModeStatus() ? 'Claro' : 'Escuro' }}</span>
+        </button>
+
+        <!-- BOTÃO CARRINHO -->
+        <button class="btn-cart" (click)="toggleCarrinho()">
+          <i class="bi bi-cart3"></i>
+          <span>Carrinho</span>
+          <span class="cart-count" *ngIf="carrinho.length > 0">{{ carrinho.length }}</span>
+        </button>
+
+        <!-- AVATAR E DROPDOWN -->
+        <div class="avatar-wrap" (click)="togglePerfilMenu()">
+          <div class="avatar-circle">
+            <i class="bi bi-person-fill"></i>
+          </div>
+
+          <!-- MENU DROPDOWN -->
+                      <div class="profile-dropdown" *ngIf="mostrarPerfilMenu" (click)="$event.stopPropagation()">
+                <div class="dropdown-header">
+                  <p class="user-name">Marcos Silva</p>
+                  <p class="user-email">marcos@email.com</p>
+                </div>
+                <div class="dropdown-divider"></div>
+                <a (click)="mudarTela('settings'); mostrarPerfilMenu = false" class="dropdown-item">
+                  <i class="bi bi-person"></i> Meu Perfil
+                </a>
+                <a (click)="mudarTela('orders'); mostrarPerfilMenu = false" class="dropdown-item">
+                  <i class="bi bi-bag"></i> Meus Pedidos
+                </a>
+                <!-- A opção SAIR foi removida daqui conforme pedido -->
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTEÚDO COM SCROLL -->
+    <div class="content-scroll">
+
+      <!-- BANNER HERO -->
+      <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+          <h1>Sabores <span class="highlight">Premium</span><br>à sua porta.</h1>
+          <p>Experimente o melhor da gastronomia angolana com<br>entrega exclusiva e sofisticada.</p>
+          <button class="btn-hero" (click)="categoria = 'Todos'; filtrarProdutos()">
+            Pedir Agora
+          </button>
+        </div>
+      </section>
+
+      <!-- FILTRO DE CATEGORIAS -->
+      <section class="categorias-row">
+        <div
+          class="cat-pill"
+          *ngFor="let cat of categorias"
+          [class.active]="categoria === cat"
+          (click)="categoria = cat; filtrarProdutos()"
+        >
+          {{ cat }}
+        </div>
+      </section>
+
+      <!-- GRID DE PRODUTOS -->
+      <section class="section-block">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">
+              {{ categoria === 'Todos' ? 'Nossa Ementa' : categoria }}
+            </h2>
+            <p class="section-sub">Os melhores sabores selecionados para si em Luanda</p>
+          </div>
+          <button class="btn-ver-todos">Ver todos →</button>
+        </div>
+
+        <!-- PRODUTOS -->
+        <div class="produtos-grid" *ngIf="!loading">
+          <div class="produto-card" *ngFor="let produto of produtosFiltrados" (click)="produtoSelecionado = produto">
+            <div class="card-img-wrap">
+              <img [src]="produto.imagem_url" [alt]="produto.nome" class="card-img" />
+              <button
+                class="btn-fav"
+                [class.active]="isFavorito(produto.id)"
+                (click)="toggleFavorito(produto); $event.stopPropagation()"
+              >
+                <i class="bi" [ngClass]="isFavorito(produto.id) ? 'bi-heart-fill' : 'bi-heart'"></i>
+              </button>
+            </div>
+
+            <div class="card-body">
+              <div class="card-rating" *ngIf="produto.rating">
+                <i class="bi bi-star-fill"></i> {{ produto.rating }}
+              </div>
+              <h3 class="card-name">{{ produto.nome }}</h3>
+              <p class="card-desc">{{ produto.descricao }}</p>
+              <div class="card-footer">
+                <span class="card-price">{{ produto.preco | number:'1.0-0' }} Kz</span>
+                <button class="btn-add" (click)="adicionarCarrinho(produto); $event.stopPropagation()">
+                  <i class="bi bi-plus-lg"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAVORITOS -->
+      <section class="section-block" *ngIf="produtosFavoritos.length > 0">
+        <div class="section-header">
+          <h2 class="section-title">Seus Favoritos</h2>
+        </div>
+        <div class="favorito-card" *ngFor="let fav of produtosFavoritos">
+          <img [src]="fav.imagem_url" [alt]="fav.nome" class="fav-img" />
+          <div class="fav-info">
+            <h3 class="fav-name">{{ fav.nome }}</h3>
+            <p class="fav-desc">{{ fav.descricao }}</p>
+            <div class="fav-row">
+              <span class="card-price">{{ fav.preco | number:'1.0-0' }} Kz</span>
+              <button class="btn-fav-add" (click)="adicionarCarrinho(fav)">Adicionar ao Carrinho</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- CARRINHO (DRAWER) -->
+  <div class="cart-overlay" *ngIf="mostrarCarrinho" (click)="toggleCarrinho()"></div>
+  <aside class="cart-drawer" [class.open]="mostrarCarrinho">
+    <div class="cart-head">
+      <h2>Meu Carrinho</h2>
+      <button class="cart-close" (click)="toggleCarrinho()">✕</button>
+    </div>
+    <div class="cart-list">
+      <div class="cart-item" *ngFor="let item of carrinho; let i = index">
+        <img [src]="item.imagem_url" [alt]="item.nome" class="cart-thumb" />
+        <div class="cart-item-info">
+          <p class="cart-item-name">{{ item.nome }}</p>
+          <span class="cart-item-price">{{ item.preco | number:'1.0-0' }} Kz</span>
+        </div>
+        <button class="cart-remove" (click)="removerItem(i)">✕</button>
+      </div>
+    </div>
+    <div class="cart-foot" *ngIf="carrinho.length > 0">
+      <div class="cart-total-row">
+        <span>Total:</span>
+        <strong>{{ totalCarrinho() | number:'1.0-0' }} Kz</strong>
+      </div>
+      <button class="btn-checkout" (click)="finalizarPedido()">Finalizar Pedido →</button>
+    </div>
+  </aside>
+
+  <!-- MODAL DE DETALHES -->
+  <div class="modal-overlay" *ngIf="produtoSelecionado" (click)="produtoSelecionado = null">
+    <div class="modal-card" (click)="$event.stopPropagation()">
+      <button class="btn-close-modal" (click)="produtoSelecionado = null">✕</button>
+      <div class="modal-grid">
+        <div class="modal-img-side">
+          <img [src]="produtoSelecionado.imagem_url" [alt]="produtoSelecionado.nome">
+        </div>
+        <div class="modal-info-side">
+          <span class="modal-category">{{ produtoSelecionado.categoria }}</span>
+          <h2>{{ produtoSelecionado.nome }}</h2>
+          <div class="modal-rating">
+            <i class="bi bi-star-fill"></i>
+            <span>{{ produtoSelecionado.rating || '4.5' }}</span>
+          </div>
+          <p class="modal-description">{{ produtoSelecionado.descricao }}</p>
+          <div class="modal-price-row">
+            <span class="modal-price">{{ produtoSelecionado.preco | number:'1.0-0' }} Kz</span>
+          </div>
+          <div class="modal-actions">
+            <button class="btn-add-cart-large" (click)="adicionarCarrinho(produtoSelecionado); produtoSelecionado = null">
+              Adicionar ao Carrinho
+            </button>
+            <button class="btn-fav-large" (click)="toggleFavorito(produtoSelecionado)">
+              <i class="bi" [ngClass]="isFavorito(produtoSelecionado.id) ? 'bi-heart-fill' : 'bi-heart'"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

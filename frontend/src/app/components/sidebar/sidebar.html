@@ -1,0 +1,30 @@
+<div class="sidebar-container">
+  <div class="sidebar-brand">
+    <h2>PetiSko</h2>
+    <span class="brand-badge">PREMIUM</span>
+  </div>
+
+  <nav class="sidebar-menu">
+    <a routerLink="/app/dashboard" routerLinkActive="active" class="menu-item">
+      <i class="bi bi-grid-1x2-fill"></i> Início
+    </a>
+    <a routerLink="/app/orders" routerLinkActive="active" class="menu-item">
+      <i class="bi bi-clock-history"></i> Pedidos
+    </a>
+    <a routerLink="/app/favorites" routerLinkActive="active" class="menu-item">
+      <i class="bi bi-heart-fill"></i> Favoritos
+    </a>
+    <a routerLink="/app/reports" routerLinkActive="active" class="menu-item">
+      <i class="bi bi-bar-chart-line-fill"></i> Relatórios
+    </a>
+    <a routerLink="/app/settings" routerLinkActive="active" class="menu-item">
+      <i class="bi bi-gear-fill"></i> Configurações
+    </a>
+  </nav>
+
+  <div class="sidebar-footer">
+    <button class="btn-logout" (click)="logout()">
+      <i class="bi bi-box-arrow-left"></i> <span>Terminar Sessão</span>
+    </button>
+  </div>
+</div>

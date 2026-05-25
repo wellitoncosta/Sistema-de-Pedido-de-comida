@@ -1,0 +1,16 @@
+.main-content {
+    /* Largura exata da sidebar para empurrar o conteúdo */
+    margin-left: 260px; 
+    width: calc(100% - 260px);
+    min-height: 100vh;
+    padding: 0; /* Vamos controlar o padding dentro dos componentes */
+    background: var(--bg-primary);
+    transition: all 0.3s ease;
+}
+
+@media(max-width: 900px) {
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
+}

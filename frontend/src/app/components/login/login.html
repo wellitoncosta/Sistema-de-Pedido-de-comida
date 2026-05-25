@@ -1,0 +1,59 @@
+<div class="auth-container">
+  <div class="auth-hero-side">
+    <div class="hero-overlay"></div>
+    <div class="hero-brand-content">
+      <span class="premium-badge">PETISKO DELIVERY</span>
+      <h1>PetiSko</h1>
+      <p>A melhor experiência de delivery moderno em Angola.</p>
+    </div>
+  </div>
+
+  <div class="auth-form-side">
+    <div class="auth-form-card glass-card">
+      
+      <div class="theme-switcher-pill" (click)="themeService.toggleTheme()">
+        <div class="pill-bg" [class.slide-light]="!themeService.getDarkModeStatus()"></div>
+        <span class="pill-option" [class.active]="themeService.getDarkModeStatus()">
+          <i class="bi bi-moon-stars-fill"></i> Escuro
+        </span>
+        <span class="pill-option" [class.active]="!themeService.getDarkModeStatus()">
+          <i class="bi bi-sun-fill"></i> Claro
+        </span>
+      </div>
+
+      <h2>Bem-vindo de volta</h2>
+      <p class="subtitle">Insira as suas credenciais para aceder à conta.</p>
+      <div class="alert-error" *ngIf="errorMessage">
+      <i class="bi bi-exclamation-circle-fill"></i> {{ errorMessage }}
+      </div>
+      <form (submit)="$event.preventDefault()">
+        <div class="input-group-premium">
+          <label>EMAIL</label>
+          <div class="input-with-icon">
+            <i class="bi bi-envelope"></i>
+            <input type="email" placeholder="nome@email.com" [(ngModel)]="email" name="email">
+          </div>
+        </div>
+
+        <div class="input-group-premium">
+          <div class="label-row">
+            <label>SENHA</label>
+            <a routerLink="/recover" class="forgot-link">Esqueceu senha?</a>
+          </div>
+          <div class="input-with-icon">
+            <i class="bi bi-lock"></i>
+            <input type="password" placeholder="Sua senha secreta" [(ngModel)]="password" name="password">
+          </div>
+        </div>
+
+        <button class="btn-premium w-100" type="button" (click)="login()">
+          Entrar
+        </button>
+      </form>
+
+      <p class="footer-auth-text">
+        Ainda não tem conta? <a routerLink="/register">Criar conta</a>
+      </p>
+    </div>
+  </div>
+</div>

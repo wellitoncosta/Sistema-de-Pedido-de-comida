@@ -1,0 +1,37 @@
+{
+  "categories": {
+    "all": "All",
+    "Pratos": "Dishes",
+    "Bebidas": "Drinks",
+    "Sobremesas": "Desserts"
+  },
+  "navbar": {
+    "home": "Home",
+    "orders": "Orders",
+    "favorites": "Favorites",
+    "reports": "Reports",
+    "settings": "Settings",
+    "search": "Search...",
+    "cart": "Cart",
+    "light": "Light",
+    "dark": "Dark",
+    "logout": "Sign Out"
+  },
+  "hero": {
+    "title": "<span class='highlight'>Premium</span> Flavors at your door.",
+    "subtitle": "The best of Angolan gastronomy with exclusive delivery.",
+    "button": "Order Now"
+  },
+  "products": {
+    "all_menu": "Our Menu",
+    "favorites_section": "Your Favorites",
+    "add": "Add to Cart",
+    "unit_price": "Unit Price"
+  },
+  "recover": {
+    "title": "Recovery",
+    "subtitle": "Enter your email to receive the code.",
+    "btn_send": "Send Code",
+    "back": "Back to Login"
+  }
+}
